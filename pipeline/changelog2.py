@@ -2,8 +2,19 @@ import json, sys
 S, OUT = sys.argv[1], sys.argv[2]
 els = json.load(open(S + "/work/elements.json"))
 sfx = json.load(open(S + "/work/sfx_placed.json"))
-ver = open(S + "/work/verify_v2.txt").read().strip()
+ver = open(S + "/work/verify_v3.txt").read().strip()
 
+REV3 = [
+ "**Spacing around every highlight box** (yellow and red), in the text above your head *and* inside cards: 0:11 Let's get started, 0:47 mirror, 0:49 logic / plan / goals, 1:14 perfectionism / problem, 1:18 control every single design, 1:22 burning me out, 1:38 amazing work, 1:42 isn't, and all others.",
+ "**0:54:** card now reads “Diploma in Multimedia” (UniKL MIIT).",
+ "**0:57:** black “Permodalan Nasional Berhad / Marketing · ASNB” label removed from the Merdeka 118 photo.",
+ "**1:14:** “problem” now stays on screen ~1 s before the next line.",
+ "**1:35:** phone and “LAUNCHED ON TIME” stamp centred on the same line.",
+ "**1:54:** only the white-shirt Syed Saddiq photo; the other two removed.",
+ "**2:43:** “Top management” with “GLC / MNC” on its own line below.",
+ "**3:23:** text now reads “He used his image smartly by modelling for PrimaValet to fund his political work”.",
+ "**4:11:** ISTJ and Owl cards enter faster, right as you say “ISTJ” and “Owl”.",
+]
 REV2 = [
  "**Opening:** keyframe zoom (1.18× easing out to 1.0×) with whoosh + pop at 0:00, before “Assalamu'alaikum”. Greeting text box removed.",
  "**Chapters (top left):** now exactly 01/04 Self Introduction (0:00–0:34) · 02/04 Personality Insights (0:34–1:47) · 03/04 Leadership Idols (1:47–4:10) · 04/04 Conclusion (4:11–4:36).",
@@ -59,8 +70,11 @@ STUMBLES = [
 ]
 
 L = []
-L.append("# Change log, revision 2: “Leadership Begins When the Plan Falls Apart”\n")
-L.append("## What changed in revision 2 (your 20 notes)\n")
+L.append("# Change log, revision 3: “Leadership Begins When the Plan Falls Apart”\n")
+L.append("## What changed in revision 3\n")
+for x in REV3: L.append("- " + x)
+L.append("")
+L.append("## Earlier: what changed in revision 2 (your 20 notes)\n")
 for x in REV2: L.append("- " + x)
 L.append("")
 L.append("Source: `raw.mov` (HEVC 10-bit, 1920×1080, 30 fps, 8272 frames, 4:35.73). Output: `final.mp4` (H.264 High, 8-bit 4:2:0, BT.709, CRF 16, AAC 256 kb/s 44.1 kHz). Resolution, frame rate, frame count and length are identical to the source.\n")

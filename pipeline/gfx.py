@@ -95,10 +95,10 @@ def draw_rich(text, fname, size, width, color=INK, dark=False, align="l", lh=1.1
     sp = f.getlength(" ")
     lines, cur, cw = [], [], 0
     for w, st in words:
-        wl = f.getlength(w)
+        wl = f.getlength(w) + (size * 0.5 if st == "gold" else 0)
         if cur and cw + sp + wl > width:
             lines.append(cur); cur, cw = [], 0
-        cur.append((w, st, wl)); cw += (sp if len(cur) > 1 else 0) + wl
+        cur.append((w, st, f.getlength(w))); cw += (sp if len(cur) > 1 else 0) + wl
     if cur: lines.append(cur)
     lhp = int(size * lh)
     padx = int(size * 0.18)
@@ -114,12 +114,14 @@ def draw_rich(text, fname, size, width, color=INK, dark=False, align="l", lh=1.1
         while i < len(line):
             w, st, wl = line[i]
             if st == "gold" and not dark:
+                if i > 0: x += size * 0.25
                 j, run = i, 0
                 while j < len(line) and line[j][1] == "gold":
                     run += line[j][2] + (sp if j > i else 0); j += 1
                 d.rounded_rectangle([x - padx * 0.8, y + size * 0.02, x + run + padx * 0.8, y + size * 1.12], radius=int(size * 0.22), fill=GOLD)
                 for k in range(i, j):
                     d.text((x, y + asc * 0.0), line[k][0], font=f, fill=INK); x += line[k][2] + sp
+                x += size * 0.25
                 i = j; continue
             col = color
             if st == "gold": col = GOLD

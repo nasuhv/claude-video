@@ -1,6 +1,18 @@
-# Change log, revision 2: “Leadership Begins When the Plan Falls Apart”
+# Change log, revision 3: “Leadership Begins When the Plan Falls Apart”
 
-## What changed in revision 2 (your 20 notes)
+## What changed in revision 3
+
+- **Spacing around every highlight box** (yellow and red), in the text above your head *and* inside cards: 0:11 Let's get started, 0:47 mirror, 0:49 logic / plan / goals, 1:14 perfectionism / problem, 1:18 control every single design, 1:22 burning me out, 1:38 amazing work, 1:42 isn't, and all others.
+- **0:54:** card now reads “Diploma in Multimedia” (UniKL MIIT).
+- **0:57:** black “Permodalan Nasional Berhad / Marketing · ASNB” label removed from the Merdeka 118 photo.
+- **1:14:** “problem” now stays on screen ~1 s before the next line.
+- **1:35:** phone and “LAUNCHED ON TIME” stamp centred on the same line.
+- **1:54:** only the white-shirt Syed Saddiq photo; the other two removed.
+- **2:43:** “Top management” with “GLC / MNC” on its own line below.
+- **3:23:** text now reads “He used his image smartly by modelling for PrimaValet to fund his political work”.
+- **4:11:** ISTJ and Owl cards enter faster, right as you say “ISTJ” and “Owl”.
+
+## Earlier: what changed in revision 2 (your 20 notes)
 
 - **Opening:** keyframe zoom (1.18× easing out to 1.0×) with whoosh + pop at 0:00, before “Assalamu'alaikum”. Greeting text box removed.
 - **Chapters (top left):** now exactly 01/04 Self Introduction (0:00–0:34) · 02/04 Personality Insights (0:34–1:47) · 03/04 Leadership Idols (1:47–4:10) · 04/04 Conclusion (4:11–4:36).
@@ -36,8 +48,7 @@ worst face samples [(275.0, 178.0), (274.5, 111.0), (0.5, 100.0)]
 original 1920x1080 30/1 frames 8272 video dur 275.733333 audio dur 275.713741 44100 container 275.733333
 final 1920x1080 30/1 frames 8272 video dur 275.733333 audio dur 275.712993 44100 container 275.733333
 audio offset vs original (samples) at 5/60/120/180/240/265 s: [0, 0, 0, 0, 0, 0]
-excluding the 2 zoom moments: 547 checks; face worst p99.9 16.0 mean 3.81; subtitle worst p99.9 17.0 mean 3.80
-zoom samples: [(0.0, 18.8, 45.1), (0.5, 16.0, 30.9), (274.5, 14.4, 22.1), (275.0, 41.7, 61.4), (275.5, 0.0, 0.0)]
+excluding the 2 zoom moments: 547 checks; face worst p99.9 16.0 mean 3.82; subtitle worst p99.9 17.0 mean 3.80
 ```
 
 The large numbers come only from the two zoom moments (0:00–0:00.5 and 4:34.5–4:35), where the whole picture is intentionally scaled. Excluding those, every check is re-encode noise only (mean ~3.8 / 255). The behind-you words (EDUCATION, DISCIPLINE, MIND, BODY, EMOTIONS, VALUES) sit below the face box and are masked by a per-frame person cut-out, so they pass behind your body.
@@ -84,7 +95,7 @@ Method: I transcribed the audio twice (once normally, once primed to keep filler
 | 17 | 4:27.70–4:29.20 | High | “chase **titles. Let's focus** on…” | The two sentences run together with no pause. Both passes hear “chase scientists that's focused”. |
 | 18 | 4:31.40–4:32.75 | High | “building the **real skills to lead**” | Rushed final line. Both passes hear “the rarest case to late”. |
 
-## Step 2: Graphics (91 elements covering all 38 storyboard frames)
+## Step 2: Graphics (89 elements covering all 38 storyboard frames)
 
 Layout: **Left zone** x 72–760, **Right zone** x 1168–1848, **Top bar** y 18–112. All storyboard “LT” items were moved into the left/right zones; nothing sits in the bottom of the frame. Every graphic is timed to the words as actually spoken (word-level timestamps), not the storyboard's estimates. Style follows your Instagram reference: frosted white rounded cards, soft shadow, mono micro-labels, segmented progress bar and chapter pill top-left. Key words get **gold** pills, problems are **red**, and crossed-out ideas get an animated red strike. Motion: 0.3 s slide-ins from the sides and 0.3 s pop-ins, both with a small overshoot, and a 0.22 s exit before the next sentence.
 
@@ -111,12 +122,12 @@ Layout: **Left zone** x 72–760, **Right zone** x 1168–1848, **Top bar** y 18
 | 7 | 0:41.82 | 0:47.24 | Right | Personality test 2 | Personality test 2 · DOPE Personality Test · OWL |
 | 7 | 0:45.42 | 0:47.26 | C | Mirror | …like looking in the mirror |
 | 8 | 0:47.36 | 0:51.22 | C | Logic → plan → goals | I thrive on logic → a solid plan → my goals |
-| 9 | 0:52.18 | 1:03.38 | Left | Diploma · UniKL | Diploma · Multimedia · UniKL MIIT |
+| 9 | 0:52.18 | 1:03.38 | Left | Diploma · UniKL | UniKL MIIT · Diploma in Multimedia |
 | 9 | 0:55.64 | 1:03.38 | Right | Merdeka 118 (PNB) |  |
 | 9 | 0:55.99 | 1:03.38 | Right | Almost 1 year |  |
 | 10 | 1:04.24 | 1:11.36 | Left | UKM · Liberal Studies | Year 1 · Liberal Studies |
 | 10 | 1:07.20 | 1:11.36 | Right | Lanyard ID badge: Head of Media Exco |  |
-| 11 | 1:12.38 | 1:14.66 | C | Perfectionism = problem | My corporate perfectionism became a problem |
+| 11 | 1:12.38 | 1:15.10 | C | Perfectionism = problem | My corporate perfectionism became a problem |
 | 11 | 1:15.18 | 1:19.60 | C | Anxious, control every design | Anxious delegating tasks, wanting to control every single design |
 | 12 | 1:19.67 | 1:24.04 | C | Micromanaging = burning out | Micromanaging was burning me out |
 | 12 | 1:24.06 | 1:27.08 | Right | Controlling to empowering | I shifted from · Controlling · → Empowering |
@@ -127,10 +138,8 @@ Layout: **Left zone** x 72–760, **Right zone** x 1168–1848, **Top bar** y 18
 | 15 | 1:40.80 | 1:43.32 | C | Leadership isn't doing everything | True leadership isn't doing everything yourself |
 | 15 | 1:43.42 | 1:47.34 | C | Clear systems + trust | It is building clear systems and trusting your team |
 | 16 | 1:48.86 | 1:50.44 | C | Real leadership under pressure | Real leadership under pressure |
-| 16 | 1:51.96 | 2:04.34 | Right | Syed Saddiq (collage front) |  |
+| 16 | 1:51.96 | 2:04.34 | Right | Syed Saddiq |  |
 | 16 | 1:51.96 | 1:55.64 | C | My idol | My idol |
-| 16 | 1:52.21 | 2:04.34 | Right | Syed Saddiq (collage back-left) |  |
-| 16 | 1:52.41 | 2:04.34 | Right | Syed Saddiq (collage back-right) |  |
 | 17 | 1:55.76 | 2:04.34 | Left | Not a nepo baby | Like me · Nepo baby · NOT A NEPO BABY |
 | 17 | 1:58.86 | 2:04.34 | Left | His mother a teacher | His mother is a teacher too |
 | 17 | 2:01.60 | 2:04.34 | C | Success must be earned | Success must be earned through hard work |
@@ -146,7 +155,7 @@ Layout: **Left zone** x 72–760, **Right zone** x 1168–1848, **Top bar** y 18
 | 21 | 2:29.91 | 2:32.04 | Left | Declined x2 | DECLINED ×2 · TO SERVE MALAYSIA |
 | 22 | 2:35.02 | 2:38.16 | C | I'd take it in a heartbeat | If I got into Oxford, I'd take it in a heartbeat |
 | 22 | 2:35.02 | 2:38.16 | Right | Heartbeat | In a heartbeat |
-| 23 | 2:38.28 | 2:54.88 | Right | Logical path | The logical path · Study hard at Oxford · Back to Malaysia · Top management · GLC / MNC · = THE LOGICAL PATH |
+| 23 | 2:38.28 | 2:54.88 | Right | Logical path | The logical path · Study hard at Oxford · Back to Malaysia · Top management · = THE LOGICAL PATH |
 | 23 | 2:46.54 | 2:54.88 | Left | You get | You get · Physical & mental comfort · Huge bonuses · Way more money |
 | 24 | 2:55.00 | 2:56.52 | C | Headache | Why give yourself a headache ? |
 | 24 | 2:57.44 | 3:00.36 | C | Zero personal profit | …for zero personal profit |
@@ -157,7 +166,7 @@ Layout: **Left zone** x 72–760, **Right zone** x 1168–1848, **Top bar** y 18
 | 26 | 3:10.71 | 3:21.12 | Right | Langkah Muar |  |
 | 26 | 3:13.10 | 3:21.12 | Left | 200 km route | Muar → Parliament, under the hot sun |
 | 26 | 3:17.68 | 3:21.12 | Left | RM160,000 raised | Raised for his people |
-| 27 | 3:21.24 | 3:27.12 | C | Image → PrimaValet → funding | He used his image smartly: modelling for PrimaValet to fund his political work |
+| 27 | 3:21.24 | 3:27.12 | C | Image → PrimaValet → funding | He used his image smartly by modelling for PrimaValet to fund his political work |
 | 28 | 3:27.24 | 3:31.64 | Behind | EMOTIONS (behind me) |  |
 | 28 | 3:29.22 | 3:31.64 | Right | Minister at 26 | Minister at |
 | 29 | 3:32.76 | 3:38.98 | Right | Syed Saddiq with Tun Dr. Mahathir |  |
@@ -172,8 +181,8 @@ Layout: **Left zone** x 72–760, **Right zone** x 1168–1848, **Top bar** y 18
 | 32 | 3:56.34 | 4:10.78 | Right | Wedding: Syed Saddiq & Bella Astillah |  |
 | 32 | 4:00.34 | 4:01.72 | Left | Broke old traditions | BROKE OLD TRADITIONS |
 | 33 | 4:01.84 | 4:10.78 | Left | Hantaran | His hantaran · Luxury bags · Master's degree · Taylor's |
-| 34 | 4:10.90 | 4:16.24 | Left | ISTJ practical | As an · ISTJ |
-| 34 | 4:12.48 | 4:16.24 | Right | Owl forward-thinking | And an · OWL |
+| 34 | 4:10.65 | 4:16.24 | Left | ISTJ practical | As an · ISTJ |
+| 34 | 4:12.04 | 4:16.24 | Right | Owl forward-thinking | And an · OWL |
 | 35 | 4:17.66 | 4:22.34 | C | Balance | True leadership = balance |
 | 35 | 4:18.82 | 4:22.34 | Right | Balance pillars | Mind · Body · Emotions · Values |
 | 36 | 4:22.46 | 4:26.64 | Left | My own path @ UKM | My path · Building my own path |
@@ -285,10 +294,9 @@ Kinds: soft **whoosh** (slide-ins, strikes, chapter changes), **pop** (cards, ch
 | 1:47.46 | whoosh | -35.9 | chapter change |
 | 1:48.86 | whoosh | -35.0 | kinetic: Real leadership under pressure |
 | 1:50.08 | pop | -30.1 | kinetic gold word |
-| 1:51.96 | pop | -28.9 | photo: Syed Saddiq (collage front) |
+| 1:51.96 | pop | -28.9 | photo: Syed Saddiq |
 | 1:51.96 | whoosh | -35.0 | kinetic: My idol |
 | 1:52.20 | pop | -30.1 | kinetic gold word |
-| 1:52.41 | pop | -28.9 | photo: Syed Saddiq (collage back-right) |
 | 1:55.76 | whoosh | -30.9 | in: Not a nepo baby |
 | 1:57.40 | whoosh | -34.2 | strike-through: Nepo baby |
 | 1:57.65 | thump | -25.9 | Not a nepo baby row |
@@ -448,10 +456,11 @@ Kinds: soft **whoosh** (slide-ins, strikes, chapter changes), **pop** (cards, ch
 | 4:04.91 | count | -38.2 | counter RM100,000 EPF |
 | 4:04.98 | count | -33.9 | counter RM100,000 EPF |
 | 4:08.24 | pop | -27.9 | Hantaran row |
-| 4:10.90 | whoosh | -30.9 | in: ISTJ practical |
-| 4:12.48 | whoosh | -30.9 | in: Owl forward-thinking |
-| 4:13.88 | pop | -27.9 | ISTJ practical row |
-| 4:14.56 | pop | -27.9 | Owl forward-thinking row |
+| 4:10.65 | whoosh | -30.9 | in: ISTJ practical |
+| 4:10.90 | whoosh | -35.9 | chapter change |
+| 4:11.03 | pop | -27.9 | ISTJ practical row |
+| 4:12.04 | whoosh | -30.9 | in: Owl forward-thinking |
+| 4:12.38 | pop | -27.9 | Owl forward-thinking row |
 | 4:17.66 | whoosh | -35.0 | kinetic: Balance |
 | 4:18.82 | pop | -30.1 | kinetic gold word |
 | 4:18.82 | whoosh | -30.9 | in: Balance pillars |

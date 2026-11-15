@@ -105,11 +105,15 @@ def icon_disc(name, size, bg=GOLD, fg=INK, shadow=True):
 
 # ------------------------------------------------------------------ rows using icons / logos
 class IconLine(G.Row):
-    def __init__(self, icon, text, at=None, size=32, **kw):
-        super().__init__(at, sfx_kind=kw.pop("sfx_kind", "pop"), anim="rise", **kw); self.icon, self.text, self.fs = icon, text, size
+    def __init__(self, icon, text, at=None, size=32, sub=None, **kw):
+        super().__init__(at, sfx_kind=kw.pop("sfx_kind", "pop"), anim="rise", **kw); self.icon, self.text, self.fs, self.sub = icon, text, size, sub
     def build(self, width, dark):
         ic = icon_disc(self.icon, int(self.fs * 1.75), shadow=False)
         tx = G.draw_rich(self.text, "semi", self.fs, width - ic.width - 30, INK)
+        if self.sub:
+            t2 = G.draw_rich(self.sub, "semi", int(self.fs * 0.85), width - ic.width - 30, MUTED)
+            both = Image.new("RGBA", (max(tx.width, t2.width), tx.height + t2.height - 2), (0, 0, 0, 0))
+            both.alpha_composite(tx, (0, 0)); both.alpha_composite(t2, (0, tx.height - 2)); tx = both
         h = max(ic.height, tx.height) + 4
         im = Image.new("RGBA", (width, h), (0, 0, 0, 0))
         im.alpha_composite(ic, (0, (h - ic.height) // 2)); im.alpha_composite(tx, (ic.width + 14, (h - tx.height) // 2 + 2))
@@ -128,6 +132,18 @@ class IconTitle(G.Row):
         tw = f2.getlength(self.sub) + 24
         d.rounded_rectangle([116, 74, 116 + tw, 104], radius=15, fill=GOLD)
         d.text((128, 78), self.sub, font=f2, fill=INK)
+        self.img = im
+
+class CenterChip(G.Row):
+    """stamp chip centred inside its card"""
+    def __init__(self, text, size, at=None):
+        super().__init__(at, sfx_kind="thump", anim="stamp"); self.text, self.fs = text, size
+    def build(self, width, dark):
+        f = font("black", self.fs); tw = f.getlength(self.text); padx, h = int(self.fs * .7), int(self.fs * 1.75)
+        im = Image.new("RGBA", (width, h + 8), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+        x0 = (width - tw - 2 * padx) / 2
+        d.rounded_rectangle([x0, 4, x0 + tw + 2 * padx, 4 + h], radius=10, outline=GOLD, width=5, fill=(245, 189, 35, 40))
+        d.text((width / 2, 4 + h / 2), self.text, font=f, fill=GOLD_TXT, anchor="mm")
         self.img = im
 
 class LogoRow(G.Row):
@@ -204,16 +220,20 @@ class Kinetic:
         sp = font(fname, size).getlength(" ")
         sprites = [(word_sprite(w, st, size, fname, tone), st, t, w) for w, st, t in self.words]
         lines, cur, cw = [], [], 0
+        mp = size * 0.3   # breathing room on both sides of every highlight box
         for sp_im, st, t, w in sprites:
             ww = sp_im.width - 52
-            if cur and cw + sp + ww > maxw: lines.append((cur, cw)); cur, cw = [], 0
-            cur.append((sp_im, st, t, ww)); cw += (sp if len(cur) > 1 else 0) + ww
+            we = ww + (2 * mp if st in ("gold", "red") else 0)
+            if cur and cw + sp + we > maxw: lines.append((cur, cw)); cur, cw = [], 0
+            cur.append((sp_im, st, t, ww)); cw += (sp if len(cur) > 1 else 0) + we
         if cur: lines.append((cur, cw))
         self.items = []; lhp = int(size * lh)
         for li, (line, lw) in enumerate(lines):
             x = cx - lw / 2
             for sp_im, st, t, ww in line:
-                self.items.append((sp_im, int(x) - 26, y + li * lhp - 26, t, st)); x += ww + sp + (size * 0.14 if st in ("gold", "red") else 0)
+                pill = st in ("gold", "red")
+                if pill: x += mp
+                self.items.append((sp_im, int(x) - 26, y + li * lhp - 26, t, st)); x += ww + sp + (mp if pill else 0)
         self.box = (min(i[1] for i in self.items), min(i[2] for i in self.items), max(i[1] + i[0].width for i in self.items), max(i[2] + i[0].height for i in self.items))
         sfx("whoosh", self.t_in, 0.5, "kinetic: " + name)
         if sfx_gold:
@@ -658,9 +678,9 @@ def build():
 
     t_later = T("later", 63)
     Card("Diploma · UniKL", "L", 190, T("diploma", 52) - 0.1, t_later - 0.12, [
-        LogoRow(UP + "unikl_logo.bin", 96), K("Diploma"), Hd("Multimedia", 44), P("UniKL MIIT", size=24)], w=470, frame_no=9)
+        LogoRow(UP + "unikl_logo.bin", 96), K("UniKL MIIT"), Hd("Diploma in Multimedia", 42)], w=500, frame_no=9)
     PhotoFrame("Merdeka 118 (PNB)", PH + "merdeka118.jpg", 1460, 150, 300, 440, T("spent", 55) - 0.1, t_later - 0.12, crop=(0.05, 0.0, 0.95, 0.75), rot=2.5,
-               kicker="Permodalan Nasional Berhad", label="Marketing · ASNB", anim="slideR", frame_no=9, kb=(1.0, 1.12), pan=(0, -0.6), label_side="br")
+               anim="slideR", frame_no=9, kb=(1.0, 1.12), pan=(0, -0.6))
     Card("Almost 1 year", "R", 690, T("almost", 56) - 0.05, t_later - 0.12, [
         Chips([("ALMOST 1 YEAR", T("almost", 56)), ("DETAIL-ORIENTED", T("very detailed", 62) - 0.1)], size=22, style="gold")], w=470, anim="pop", padding=16, frame_no=9)
 
@@ -669,10 +689,10 @@ def build():
         LogoRow(UP + "ukm_logo.bin", 92), K("Year 1"), Hd("Liberal Studies", 44)], w=470, frame_no=10)
     Lanyard(1560, 220, T("head of the media", 67) - 0.1, t_atf - 0.12, UP + "ukm_logo.bin")
 
-    t_ifelt = T("felt anxious", 74.5) if False else T("i felt", 74.3)
+    t_ifelt = T("problem", 73.8) + 1.0
     t_real = T("realizing", 79.5)
     Kinetic("Perfectionism = problem", "My corporate [perfectionism] became a {problem}", T("my corporate", 72) - 0.05, t_ifelt - 0.1, size=56, frame_no=11)
-    Kinetic("Anxious, control every design", "Anxious delegating tasks, wanting to {control} {every} {single} {design}", t_ifelt - 0.05, t_real - 0.12, size=50, frame_no=11)
+    Kinetic("Anxious, control every design", "Anxious delegating tasks, wanting to {control} {every} {single} {design}", t_ifelt, t_real - 0.12, size=50, frame_no=11)
 
     t_icr = T("i created", 86.5)
     Kinetic("Micromanaging = burning out", "Micromanaging was {burning} {me} {out}", t_real - 0.05, T("i shifted", 83.8) - 0.1, size=56, frame_no=12)
@@ -689,9 +709,10 @@ def build():
         IconLine("id", "Full team ownership", at=T("full ownership", 90.5))], w=520, frame_no=13)
 
     t_taught = T("that taught", 98.5)
-    G.PhoneGrid(T("instagram", 93.5), t_taught - 0.12, T("on time", 94.5))
-    Card("Launched on time stamp", "R", 690, T("on time", 94.5) - 0.1, t_taught - 0.12, [
-        Chip("✓ LAUNCHED ON TIME", style="gold", size=26, stamp=True, at=T("on time", 94.5))], w=380, anim="pop", sfx_in="pop", padding=16, frame_no=14)
+    phone = G.PhoneGrid(T("instagram", 93.5), t_taught - 0.12, T("on time", 94.5))
+    cxp = phone.x + phone.w // 2
+    stamp_card = Card("Launched on time stamp", "R", 670, T("on time", 94.5) - 0.1, t_taught - 0.12, [
+        CenterChip("✓ LAUNCHED ON TIME", 26, at=T("on time", 94.5))], w=360, anim="pop", sfx_in="pop", padding=14, frame_no=14, x=cxp - 180)
     Kinetic("Team did amazing work", "My team did [amazing] [work] on their own", T("my team did", 95.5) - 0.05, t_taught - 0.12, size=56, frame_no=14)
 
     t_made = T("that made me", 107)
@@ -702,9 +723,7 @@ def build():
     t_like = T("like me", 115); t_tome = T("to me", 124)
     Kinetic("Real leadership under pressure", "Real leadership under [pressure]", T("real leadership", 108) - 0.05, T("which brings", 110.3) - 0.1, size=60, frame_no=16)
     t_idol = T("my idol", 111.5)
-    PhotoFrame("Syed Saddiq (collage back-left)", UP + "ironman.bin", 1220, 270, 300, 330, t_idol + 0.25, t_tome - 0.12, crop=(0.2, 0.0, 0.8, 1.0), rot=-7, frame_no=16, kb=(1.0, 1.06))
-    PhotoFrame("Syed Saddiq (collage back-right)", UP + "debate.bin", 1530, 260, 300, 330, t_idol + 0.45, t_tome - 0.12, crop=(0.62, 0.0, 1.0, 0.92), rot=6, frame_no=16, kb=(1.0, 1.06))
-    PhotoFrame("Syed Saddiq (collage front)", PH + "saddiq.jpg", 1390, 330, 330, 400, t_idol, t_tome - 0.12, crop=(0.0, 0.0, 1.0, 0.75), rot=-1.5,
+    PhotoFrame("Syed Saddiq", PH + "saddiq.jpg", 1440, 260, 360, 440, t_idol, t_tome - 0.12, crop=(0.0, 0.0, 1.0, 0.75), rot=-1.5,
                kicker="My idol", label="Syed Saddiq · 33", frame_no=16, kb=(1.0, 1.08))
     Kinetic("My idol", "My [idol]", t_idol - 0.05, t_like - 0.12, size=64, frame_no=16)
     Card("Not a nepo baby", "L", 180, t_like, t_tome - 0.12, [
@@ -748,7 +767,7 @@ def build():
         K("The logical path"),
         IconLine("cap", "Study hard at Oxford", at=T("study", 158.5), size=30),
         IconLine("target", "Back to Malaysia", at=T("back to malaysia", 159.5), size=30),
-        IconLine("briefcase", "Top management · GLC / MNC", at=T("top management", 161), size=30),
+        IconLine("briefcase", "Top management", sub="GLC / MNC", at=T("top management", 161), size=30),
         Chip("= THE LOGICAL PATH", at=T("logical", 165), style="gold", size=24)], w=520, frame_no=23)
     Card("You get", "L", 200, T("you get better", 166), t_why - 0.12, [
         K("You get"),
@@ -781,7 +800,7 @@ def build():
         Counter("RM{n:,}+", 0, 160000, T("160", 198), 1.1, size=58, col=INK)], w=440, frame_no=26)
 
     t_emo = T("emotionally", 207)
-    Kinetic("Image → PrimaValet → funding", "He used his [image] smartly: modelling for PrimaValet to [fund] his political work", t_also - 0.05, t_emo - 0.12, size=48, maxw=980, frame_no=27)
+    Kinetic("Image → PrimaValet → funding", "He used his [image] smartly by modelling for PrimaValet to [fund] his political work", t_also - 0.05, t_emo - 0.12, size=48, maxw=980, frame_no=27)
 
     t_he = T("he deeply", 211)
     BehindWord("EMOTIONS (behind me)", "EMOTIONS", 470, 615, 130, t_emo, t_he - 0.12, color=GOLD, frame_no=28)
@@ -823,10 +842,10 @@ def build():
 
     # ---------------- chapter 4: conclusion
     t_since = T("since id", 256)
-    Card("ISTJ practical", "L", 200, t_asan, t_since - 0.12, [
-        K("As an"), IconTitle("clipboard", "ISTJ", "PRACTICAL", at=T("practical", 253.5))], w=440, frame_no=34)
-    Card("Owl forward-thinking", "R", 200, T("outward", 252), t_since - 0.12, [
-        K("And an"), IconTitle("owl", "OWL", "FORWARD-THINKING", at=T("forward", 254.3))], w=470, frame_no=34)
+    Card("ISTJ practical", "L", 200, t_asan - 0.25, t_since - 0.12, [
+        K("As an"), IconTitle("clipboard", "ISTJ", "PRACTICAL", at=T("sitj", 250.9) - 0.15)], w=440, frame_no=34)
+    Card("Owl forward-thinking", "R", 200, T("and", 252) - 0.2, t_since - 0.12, [
+        K("And an"), IconTitle("owl", "OWL", "FORWARD-THINKING", at=T("outward", 252) - 0.1)], w=470, frame_no=34)
 
     t_asi = T("as i build", 262)
     Kinetic("Balance", "True leadership = [balance]", t_since - 0.05, t_asi - 0.12, size=62, frame_no=35)
