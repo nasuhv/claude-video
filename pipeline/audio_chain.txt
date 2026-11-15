@@ -1,0 +1,1 @@
+adeclip=threshold=1,highpass=f=75:poles=2,afftdn=nr=8:nf=-55:tn=1,adeclick=threshold=3,deesser=i=0.35:m=0.5:f=0.5,acompressor=threshold=-22dB:ratio=2.5:attack=8:release=150:makeup=1
